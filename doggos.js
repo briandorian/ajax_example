@@ -3,6 +3,12 @@ const doggos = document.querySelector(".doggos");
 
 
 function addNewDogo(){
+//spinner method
+let img = document.createElement("img");
+img.id = "loader";
+doggos.appendChild(img);
+
+
 const promise = fetch(BREEDS_URL);
 
 promise
@@ -11,11 +17,11 @@ promise
         return processingPromise;
     })
     .then(function (processedReponse) {
-        let img=document.createElement("img");
+        img=document.getElementById("loader");
+        img.id="";
         img.src=processedReponse.message;
         img.alt="Cute doggo"
         doggos.appendChild(img);
     });
 }
 document.querySelector(".addDogo").addEventListener("click",addNewDogo);
-
